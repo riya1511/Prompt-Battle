@@ -8,6 +8,7 @@
 
 @media (min-width:35rem) {
     .homewrapper{
+        padding: 0.8rem;
         width: 85%;
     }
     .home{
