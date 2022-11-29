@@ -1,13 +1,27 @@
 .navBar{
     width: 15%;
     height: 100vh;
-    border: 1px solid red;
-    justify-content: space-between;
     align-items: center;
     padding-block: 4rem ;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+}
+
+.navBar-hamB{
+    display: none;
+    transition-duration: 300ms;
+}
+
+.navBar-hamMenu{
+    gap:9rem;
+}
+.navBar-hamMenuLabels{
+    transform: translateY(0%);
+    display: none;
 }
 
 .navBar-iconTray{
+    align-items: center;
     gap: 3.5rem;
 }
 
@@ -17,27 +31,42 @@
 }
 
 @media (max-width: 35rem){
+    .navBar-hamB{
+        display: block;
+        background-color: transparent;
+        border: none;
+    }
     .navBar{
         width: 100%;
-        height: max-content;
-        display: block;
-        padding: 0.5rem;
-        background-color: black;
-        z-index: 2;
+        height: 7vh;
+        padding: 0;
     }
     .navBar-top{
+        width: 100%;
+        background-color: rgba(31, 32, 56, 0.46);
+        padding: 1rem;
+        z-index: 10;
         flex-direction: row;
         justify-content: space-between;
     }
+    .navIcons{
+        display:none;
+    }
     .navBar-hamMenu{
         transform: translateY(-130%);
-        display: none;
-        width: 96%;
+        width: 100%;
         align-items: center;
-        border: 1px solid red;
-        z-index: 0;
+        transition-duration: 600ms;
+        background-color: #090909dd;
+        padding-block: 1rem ;
+        gap:1rem;
     }
     .navBar-iconTray{
         gap:1rem;
+        z-index: -100;
+    }
+    .navBar-hamMenuLabels {
+        display: block;
+        text-align: center;
     }
 }

@@ -2,23 +2,30 @@ import './Navbar.css';
 import React,{ useState } from 'react';
 
 export default function Navbar(){
+
+    const [hamRotation , setHamRotation] = useState(
+        { 
+            width:"20px",
+            height:"20px",
+            transform:"rotate(0deg)",
+            transitionDuration: '300ms'
+        }
+    );
     const [isVisible , setisVisible]= useState(false);
-    const [hamB,setHamb] = useState(
-        {
-            display:"none",
-            transform:"translateY(-130%)"
-        });
+    const [hamB,setHamb] = useState({});
     const hamburgerMenu = () => {
         if(!isVisible){
             setHamb({
-                display:"flex",
                 transform:"translateY(0)"
             })
+            console.log(hamRotation)
+            setHamRotation(prevVal =>({...prevVal, transform:`rotate(180deg)`}));
         }else{
             setHamb({
-                display:"none",
                 transform:"translateY(-130%)"
             });
+            console.log(hamRotation)
+            setHamRotation(prevVal =>({...prevVal, transform:`rotate(0deg)`}));
         }
         console.log(isVisible);
         setisVisible(prevVal => !prevVal);
@@ -32,49 +39,51 @@ export default function Navbar(){
                 </h1>
                 <button className='navBar-hamB' onClick={hamburgerMenu}>
                     <img 
-                        style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }}
-                        src="https://img.icons8.com/external-tal-revivo-filled-tal-revivo/96/EBEBEB/external-mobile-application-hamburger-menu-setting-interface-basic-filled-tal-revivo.png"
+                        style={hamRotation}
+                        src={process.env.PUBLIC_URL + "./Assests/Icons/menu.png"}
+                        alt="menu"
                     />
                 </button>
             </div>
             <div style={hamB} className='navBar-hamMenu flex-col'>
                 <div className='navBar-iconTray flex-col'>
-                    <img style={{ 
+                    <img className='navIcons' style={{ 
                             width:"30px",
                             height:"30px"
                         }}
                         alt="Homepage Icon"
                         src={process.env.PUBLIC_URL+ "./Assests/Icons/HomePage.png"} 
                     />
-                    <img style={{ 
+                    <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
+                    <img className='navIcons' style={{ 
                             width:"30px",
                             height:"30px"
                         }} 
                         alt="Generation Icon"
                         src={process.env.PUBLIC_URL+ "./Assests/Icons/ImagesGen.png"} 
                     />
-                    <img style={{ 
+                    <p className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</p>
+                    <img className='navIcons' style={{ 
                             width:"30px",
                             height:"30px"
                         }} 
                         alt="Leaderboard Icon"
                         src={process.env.PUBLIC_URL+ "./Assests/Icons/LeaderBoard.png"} 
                     />
-                    <img style={{ 
+                    <p className='navBar-hamMenuLabels fc-white '>Leaderboard</p>
+                    <img className='navIcons' style={{ 
                             width:"30px",
                             height:"30px"
                         }} 
                         alt="Polling Icon"
                         src={process.env.PUBLIC_URL+ "./Assests/Icons/Polling.png"} 
                     />
+                    <p className='navBar-hamMenuLabels fc-white '>Polling</p>
                 </div>
 
 
                 <div className='navBar-teamDetails flex-row'>
-                    <img style={{ 
+                    <img className='navIcons' style={{ 
                             width:"35px",
                             height:"35px"
                         }}
