@@ -1,0 +1,43 @@
+.navBar{
+    width: 15%;
+    height: 100vh;
+    border: 1px solid red;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 4rem ;
+}
+
+.navBar-iconTray{
+    gap: 3.5rem;
+}
+
+.navBar-teamDetails{
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 35rem){
+    .navBar{
+        width: 100%;
+        height: max-content;
+        display: block;
+        padding: 0.5rem;
+        background-color: black;
+        z-index: 2;
+    }
+    .navBar-top{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navBar-hamMenu{
+        transform: translateY(-130%);
+        display: none;
+        width: 96%;
+        align-items: center;
+        border: 1px solid red;
+        z-index: 0;
+    }
+    .navBar-iconTray{
+        gap:1rem;
+    }
+}

@@ -31,6 +31,8 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: #010847;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Make images easier to work with */
@@ -118,5 +120,15 @@ body {
 
 
 
-.ff-jet { font-family: 'JetBrains Mono', monospace; }
 .ff-san { font-family: 'Work Sans', sans-serif; }
+
+.fc-white { color: #FFFFFF;}
+
+.flex-row{
+  display: flex;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
