@@ -31,7 +31,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-image: url("../public/Assests/Background/BackGroundMobile.jpg");
+  background-image: url("../public/assests/background/BackGroundMobile.jpg");
   font-family: 'JetBrains Mono', monospace;
   background-repeat: no-repeat;
   background-size: cover;

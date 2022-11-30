@@ -15,8 +15,8 @@
 .navBar-hamMenu{
     gap:9rem;
 }
+
 .navBar-hamMenuLabels{
-    transform: translateY(0%);
     display: none;
 }
 

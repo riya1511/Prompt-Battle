@@ -40,7 +40,7 @@ export default function Navbar(){
                 <button className='navBar-hamB' onClick={hamburgerMenu}>
                     <img 
                         style={hamRotation}
-                        src={process.env.PUBLIC_URL + "./Assests/Icons/menu.png"}
+                        src="https://www.ashu-singh.me/Prompt-Battle/assests/icons/menu.png"
                         alt="menu"
                     />
                 </button>
@@ -52,7 +52,7 @@ export default function Navbar(){
                             height:"30px"
                         }}
                         alt="Homepage Icon"
-                        src={process.env.PUBLIC_URL+ "./Assests/Icons/HomePage.png"} 
+                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/HomePage.png"} 
                     />
                     <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
                     <img className='navIcons' style={{ 
@@ -60,7 +60,7 @@ export default function Navbar(){
                             height:"30px"
                         }} 
                         alt="Generation Icon"
-                        src={process.env.PUBLIC_URL+ "./Assests/Icons/ImagesGen.png"} 
+                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/ImagesGen.png"} 
                     />
                     <p className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</p>
                     <img className='navIcons' style={{ 
@@ -68,7 +68,7 @@ export default function Navbar(){
                             height:"30px"
                         }} 
                         alt="Leaderboard Icon"
-                        src={process.env.PUBLIC_URL+ "./Assests/Icons/LeaderBoard.png"} 
+                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/LeaderBoard.png"} 
                     />
                     <p className='navBar-hamMenuLabels fc-white '>Leaderboard</p>
                     <img className='navIcons' style={{ 
@@ -76,7 +76,7 @@ export default function Navbar(){
                             height:"30px"
                         }} 
                         alt="Polling Icon"
-                        src={process.env.PUBLIC_URL+ "./Assests/Icons/Polling.png"} 
+                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Polling.png"} 
                     />
                     <p className='navBar-hamMenuLabels fc-white '>Polling</p>
                 </div>
@@ -88,7 +88,7 @@ export default function Navbar(){
                             height:"35px"
                         }}
                         alt="Team Icon"
-                        src={process.env.PUBLIC_URL+ "./Assests/Icons/Team Icon.png"} 
+                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Team Icon.png"} 
                     />
                     <h2 className='fc-white fs-400 medium'>
                         Team Name
