@@ -1,0 +1,31 @@
+.imgWrapper{
+    background-color: #00000025;
+    border: 1px solid #ffffff85;
+    padding: clamp(1rem, 10vw , 5rem);
+    padding-top: 3rem;
+    gap: 3rem;
+    border-radius: 15px;
+    width: 85%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    width: 400px;
+    height: 300px;
+    background-color: #4018CD;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.full-width {
+    grid-column: 1 / 3;
+}

@@ -1,5 +1,7 @@
 import './Navbar.css';
 import React,{ useState } from 'react';
+import { NavLink } from "react-router-dom";
+import { HiArrowRight } from "react-icons/hi2";
 
 export default function Navbar(){
 
@@ -11,6 +13,7 @@ export default function Navbar(){
             transitionDuration: '300ms'
         }
     );
+    const [isActive, setIsActive] = useState(false);
     const [isVisible , setisVisible]= useState(false);
     const [hamB,setHamb] = useState({});
     const hamburgerMenu = () => {
@@ -47,38 +50,49 @@ export default function Navbar(){
             </div>
             <div style={hamB} className='navBar-hamMenu flex-col'>
                 <div className='navBar-iconTray flex-col'>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }}
-                        alt="Homepage Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/HomePage.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Generation Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/ImagesGen.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Leaderboard Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/LeaderBoard.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Leaderboard</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Polling Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Polling.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Polling</p>
+                    <NavLink to='/Prompt-Battle' activeClassName='active'>
+                            <img className='navIcons' style={{ 
+                                    width:"30px",
+                                    height:"30px"
+                                }}
+                                alt="Homepage Icon"
+                                src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/HomePage.png"} 
+                            />
+                    </NavLink>
+                    <NavLink to='/Prompt-Battle' className='navBar-hamMenuLabels fc-white'>Homepage</NavLink>
+
+                    <NavLink to='/Generateimg'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Generation Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/ImagesGen.png"} 
+                        />
+                    </NavLink>
+                    <NavLink to='/Generateimg' className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</NavLink>
+
+                    <NavLink to='/Leaderboard'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Leaderboard Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/LeaderBoard.png"} 
+                        />
+                    </NavLink>
+                    <NavLink to='/Leaderboard' className='navBar-hamMenuLabels fc-white'>Leaderboard</NavLink>
+
+                    <NavLink to='/Polling'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Polling Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Polling.png"} 
+                        />
+                    </NavLink>
+                    <NavLink to='/Polling' className='navBar-hamMenuLabels fc-white'>Polling</NavLink>
                 </div>
 
 

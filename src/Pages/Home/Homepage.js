@@ -1,4 +1,4 @@
-import Wrapper from "../Wrapper/Wrapper";
+import Wrapper from "../../components/Wrapper/Wrapper";
 import './Homepage.css'
 export default function Homepage(){
     return (

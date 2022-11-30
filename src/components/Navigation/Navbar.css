@@ -31,6 +31,23 @@
     gap: 1rem;
 }
 
+.icon {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+
+.active {
+    background: rgb(1,7,43);
+    background: linear-gradient(161deg, #C139E1 0%, #4018CD 100%);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    padding: 15px;
+    text-align: center;
+}
+
 @media (max-width: 35rem){
     .navBar-hamB{
         display: block;
@@ -52,6 +69,7 @@
     }
     .navIcons{
         display:none;
+        cursor: pointer;
     }
     .navBar-hamMenu{
         transform: translateY(-130%);
@@ -69,5 +87,6 @@
     .navBar-hamMenuLabels {
         display: block;
         text-align: center;
+        text-decoration: none;
     }
 }
