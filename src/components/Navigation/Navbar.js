@@ -16,7 +16,7 @@ export default function Navbar(){
     const hamburgerMenu = () => {
         if(!isVisible){
             setHamb({
-                transform:"translateY(0)"
+                transform:"translateY(-2.5%)"
             })
             console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(180deg)`}));

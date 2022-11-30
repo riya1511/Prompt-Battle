@@ -1,19 +1,11 @@
-.homewrapper{
-    padding: 2rem 1rem;
-}
 .home {
     z-index: -10;
     gap: 1.5rem;
 }
 
 @media (min-width:35rem) {
-    .homewrapper{
-        padding: 0.8rem;
-        width: 85%;
-    }
     .home{
         background-color: #00000025;
-        border: 1px solid #ffffff85;
         padding: clamp(1rem, 10vw , 9rem);
         gap: 3rem;
         border-radius: 15px;
