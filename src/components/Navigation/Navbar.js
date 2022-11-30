@@ -1,8 +1,10 @@
 import './Navbar.css';
 import React,{ useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar(){
 
+    const [isLoggedIn , setIsLoggedIn] = useState(false);
     const [hamRotation , setHamRotation] = useState(
         { 
             width:"20px",
@@ -47,42 +49,53 @@ export default function Navbar(){
             </div>
             <div style={hamB} className='navBar-hamMenu flex-col'>
                 <div className='navBar-iconTray flex-col'>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }}
-                        alt="Homepage Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/HomePage.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Generation Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/ImagesGen.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Leaderboard Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/LeaderBoard.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Leaderboard</p>
-                    <img className='navIcons' style={{ 
-                            width:"30px",
-                            height:"30px"
-                        }} 
-                        alt="Polling Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Polling.png"} 
-                    />
-                    <p className='navBar-hamMenuLabels fc-white '>Polling</p>
+                    <Link to='/Prompt-Battle/Homepage'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }}
+                            alt="Homepage Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/HomePage.png"} 
+                        />
+                        <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
+                    </Link>
+
+                    <Link to='/Prompt-Battle/GenerateImage'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Generation Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/ImagesGen.png"} 
+                        />
+                        <p className='navBar-hamMenuLabels fc-white fs-200'>Generate Image</p> 
+                    </Link>
+                    
+                    <Link to='/Prompt-Battle/Leaderboard'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Leaderboard Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/LeaderBoard.png"} 
+                        />
+                        <p className='navBar-hamMenuLabels fc-white '>Leaderboard</p>
+                    </Link>
+
+                    <Link to='/Prompt-Battle/Polling'>
+                        <img className='navIcons' style={{ 
+                                width:"30px",
+                                height:"30px"
+                            }} 
+                            alt="Polling Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Polling.png"} 
+                        />
+                        <p className='navBar-hamMenuLabels fc-white '>Polling</p>
+                    </Link>
                 </div>
 
 
-                <div className='navBar-teamDetails flex-row'>
+                {isLoggedIn ? <div className='navBar-teamDetails flex-row'>
                     <img className='navIcons' style={{ 
                             width:"35px",
                             height:"35px"
@@ -91,9 +104,14 @@ export default function Navbar(){
                         src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Team Icon.png"} 
                     />
                     <h2 className='fc-white fs-400 medium'>
-                        Team Name
+                        CapyBara
                     </h2>
-                </div>  
+                </div> :
+                <button 
+                    className='button fs-100 extrabold fc-white' 
+                    style={{padding:"0.6rem 1.4rem"}}
+                    onClick={() => setIsLoggedIn(prevVal => !prevVal)}
+                >Login</button> }
             </div>
         </div>
     );

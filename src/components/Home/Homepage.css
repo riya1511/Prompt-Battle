@@ -9,5 +9,6 @@
         padding: clamp(1rem, 10vw , 9rem);
         gap: 3rem;
         border-radius: 15px;
+        
     }
 }
