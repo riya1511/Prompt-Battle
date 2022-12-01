@@ -1,47 +1,90 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import './GenerateImg.css'
 import Wrapper from '../../components/Wrapper/Wrapper'
+import DisplayImg from '../../components/DisplayImg/DisplayImg'
+import { MdOutlineExpandMore } from "react-icons/md";
+import ScrollToTop from '../../components/ScrollToTop';
 
 function GenerateImg() {
+
+  const displayImg = useRef(null);
+
+  const scrollToSection = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: 'smooth'
+    })
+  }
+
+  const [info, setInfo] = useState({
+    prompt: "",
+    size: "",
+    number: "",
+    url: ""
+  });
+
+  const handleChange = (e) => {
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(info);
+    setInfo({ prompt: "", size: "", number: "", url: "" });
+  };
+
   return (
     <Wrapper>
+      <ScrollToTop/>
       <div className='imgWrapper'>
         <h1 className='fc-white'>{' >Image Generation '}</h1>
         <div className='flex-col fc-white content'>
-          <form>
-            <p className='full-width'>
-              <label for="prompt">Prompt</label>
-              <textarea name="prompt" cols='20' rows='7' />
-            </p>
+          <form onSubmit={handleSubmit}>
+            <div className='input-container full-width'>
+              <label for="">Prompt</label>
+              <textarea name="prompt" cols='20' rows='7' value={info.prompt} onChange={handleChange} />
+            </div>
             
-            <p>
+            <div className='input-container'>
               <label>Size</label>
-              <input />
-            </p>
+              <input type='text' name='size' value={info.size} onChange={handleChange} />
+            </div>
             
-            <p>
+            <div className='input-container'>
               <label>Number</label>
-              <input />
-            </p>
+              <input type='text' name='number' value={info.number} onChange={handleChange} />
+            </div>
             
-            <p>
-              <button className='button fs-200 fc-white extrabold'>Generate</button>
-            </p>
+            <div>
+              <button className='form-btn button fs-200 fc-white extrabold'>Generate</button>
+            </div>
 
-            <p>
-              <button className='button fs-200 fc-white extrabold'>Get a Variant</button>
-            </p>
+            <div>
+              <button className='form-btn button fs-200 fc-white extrabold'>Get a Variant</button>
+            </div>
             
-            <p className='full-width'>
+            <div className='input-container full-width'>
               <label>URL</label>
-              <input />
-            </p>
+              <input type='text' name='url' value={info.url} onChange={handleChange} />
+            </div>
             
-            <p>
-              <button className='button fs-200 fc-white extrabold'>Submit</button>
-            </p>
+            <div className='full-width'>
+              <button className='form-btn button fs-200 fc-white extrabold'>Submit</button>
+            </div>
             
           </form>
+        </div>
+
+        <div className='scroll flex-col' onClick={() => scrollToSection(displayImg)}>
+          <h3 className='fs-50 fc-white'>Scroll for Images</h3>
+          <MdOutlineExpandMore className='fc-white fs-600 extrabold' />
+        </div>
+
+        <div ref={displayImg}>
+          <DisplayImg />
         </div>
       </div>
     </Wrapper>
