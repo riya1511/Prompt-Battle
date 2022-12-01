@@ -18,13 +18,13 @@ export default function Navbar(){
     const hamburgerMenu = () => {
         if(!isVisible){
             setHamb({
-                transform:"translateY(-2.5%)"
+                height: "40vh"
             })
             console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(180deg)`}));
         }else{
             setHamb({
-                transform:"translateY(-130%)"
+                height: "0px"
             });
             console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(0deg)`}));
@@ -95,23 +95,27 @@ export default function Navbar(){
                 </div>
 
 
-                {isLoggedIn ? <div className='navBar-teamDetails flex-row'>
-                    <img className='navIcons' style={{ 
-                            width:"35px",
-                            height:"35px"
-                        }}
-                        alt="Team Icon"
-                        src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Team Icon.png"} 
-                    />
-                    <h2 className='fc-white fs-400 medium'>
-                        CapyBara
-                    </h2>
-                </div> :
-                <button 
-                    className='button fs-100 extrabold fc-white' 
-                    style={{padding:"0.6rem 1.4rem"}}
-                    onClick={() => setIsLoggedIn(prevVal => !prevVal)}
-                >Login</button> }
+                {isLoggedIn ? 
+                    <div className='navBar-teamDetails flex-row'>
+                        <img className='navIcons' style={{ 
+                                width:"35px",
+                                height:"35px"
+                            }}
+                            alt="Team Icon"
+                            src={"https://www.ashu-singh.me/Prompt-Battle/assests/icons/Team Icon.png"} 
+                        />
+                        <h2 className='fc-white fs-400 medium'>
+                            CapyBara
+                        </h2>
+                    </div> :
+                    <Link to='/Prompt-Battle/Login'>
+                        <button 
+                            className='button fs-100 extrabold fc-white' 
+                            style={{padding:"0.6rem 1.4rem"}}
+                            onClick={() => setIsLoggedIn(prevVal => !prevVal)}
+                        >Login</button>
+                    </Link>
+                }
             </div>
         </div>
     );

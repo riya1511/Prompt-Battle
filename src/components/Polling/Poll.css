@@ -1,6 +1,8 @@
 .poll {
     align-items: center;
     justify-content: space-around;
+    padding-bottom: 1rem;
+    gap: 1rem;
 }
 
 @media (min-width: 65rem){

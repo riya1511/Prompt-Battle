@@ -6,7 +6,7 @@ export default function Poll(){
     const style  = {gap:"1rem" };
     return (
         <Wrapper >
-            <div className="flex-col border" style={{...style,gap:"2rem"}}>
+            <div className="flex-col borders" style={{...style,gap:"2rem"}}>
                 <h1 className='fs-800 title fc-white extrabold'>{">Polling"}</h1>
                 <div className="flex-col poll">
                     <div className="flex-col" style={style}>

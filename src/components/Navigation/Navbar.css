@@ -39,14 +39,13 @@
     }
     .navBar{
         width: 100%;
-        height: 7vh;
+        height: max-content;
         padding: 0;
     }
     .navBar-top{
         width: 100%;
         background-color: rgba(31, 32, 56, 0.46);
         padding: 1rem;
-        z-index: 10;
         flex-direction: row;
         justify-content: space-between;
     }
@@ -54,17 +53,17 @@
         display:none;
     }
     .navBar-hamMenu{
-        transform: translateY(-130%);
+        justify-content: space-around;
+        height: 0vh;
+        overflow: hidden;
         width: 100%;
         align-items: center;
         transition-duration: 600ms;
-        background-color: #090909dd;
-        padding-block: 1rem ;
-        gap:1rem;
+        background-color: #0909099d;
+        gap: 0.5rem;
     }
     .navBar-iconTray{
         gap:1rem;
-        z-index: -100;
     }
     .navBar-hamMenuLabels {
         display: block;
@@ -73,5 +72,5 @@
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }

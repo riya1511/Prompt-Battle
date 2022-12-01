@@ -32,10 +32,11 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-image: url("../public/assests/background/BackGroundMobile.jpg");
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', monospace !important;
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  overflow-y: scroll;
 }
 
 /* Make images easier to work with */
@@ -71,13 +72,15 @@ select {
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar,
-.border::-webkit-scrollbar {
+.borders::-webkit-scrollbar,
+.container::-webkit-scrollbar  {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 body,
-.border {
+.borders,
+.container {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
@@ -152,13 +155,15 @@ body,
 }
 
 .container{
-  height: 93vh;
-  padding: 0rem 1rem;
+  height: 100%;
+  padding: 1rem 1rem;
 }
 
-.border {
-  height: 93vh;
-  overflow-y: scroll;
+.borders {
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  padding-bottom: 1rem;
 }
 
 .title {
@@ -166,14 +171,13 @@ body,
   padding: 1rem;
 }
 @media (min-width:35rem) {
-  .border {
+  .borders {
     border: 1px solid #ffffff85;
-    height: 96.5vh;
-    overflow-y: scroll;
-    border-radius: 12px;
+    height: 96vh;
   }
   .wrapper {
     flex-direction: row;
+    z-index: -10;
   }
   .container{
     padding: 0.8rem;
