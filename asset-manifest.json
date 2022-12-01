@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Prompt-Battle/static/css/main.3df09b4f.css",
+    "main.js": "/Prompt-Battle/static/js/main.6bcc6015.js",
+    "static/media/BackGroundMobile.jpg": "/Prompt-Battle/static/media/BackGroundMobile.c26acdbc2eb503ed0c77.jpg",
+    "index.html": "/Prompt-Battle/index.html",
+    "main.3df09b4f.css.map": "/Prompt-Battle/static/css/main.3df09b4f.css.map",
+    "main.6bcc6015.js.map": "/Prompt-Battle/static/js/main.6bcc6015.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3df09b4f.css",
+    "static/js/main.6bcc6015.js"
+  ]
+}
