@@ -21,16 +21,13 @@ export default function Navbar(){
             setHamb({
                 transform:"translateY(0)"
             })
-            console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(180deg)`}));
         }else{
             setHamb({
                 transform:"translateY(-130%)"
             });
-            console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(0deg)`}));
         }
-        console.log(isVisible);
         setisVisible(prevVal => !prevVal);
     }
 

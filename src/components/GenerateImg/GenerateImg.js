@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
 import './GenerateImg.css'
-import Wrapper from '../../components/Wrapper/Wrapper'
-import DisplayImg from '../../components/DisplayImg/DisplayImg'
+import Wrapper from '../Wrapper/Wrapper'
+import DisplayImg from '../DisplayImg/DisplayImg'
 import { MdOutlineExpandMore } from "react-icons/md";
-import ScrollToTop from '../../components/ScrollToTop';
+import ScrollToTop from '../ScrollToTop';
+import { db } from '../../firebase';
 
 function GenerateImg() {
 
@@ -32,7 +33,21 @@ function GenerateImg() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(info);
+
+    db.collection('prompt')
+    .add({
+      prompt: info.prompt,
+      size: info.size,
+      number: info.number,
+      url: info.url
+    })
+    .then(() => {
+      console.log(info);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+    
     setInfo({ prompt: "", size: "", number: "", url: "" });
   };
 
