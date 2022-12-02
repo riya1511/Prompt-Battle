@@ -1,32 +1,56 @@
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Wrapper from '../Wrapper/Wrapper'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { checkResponse } from '../OpenAIApi';
+import { userCollectionRef } from '../../firebase/firebase';
+import { getDocs } from 'firebase/firestore';
+
 export default function Login(){
 
     const [classNames , setClassName] = useState(['','','']);
-    const [isDisabled , setIsDisabled]= useState(true);
+    const [isLoading , setIsLoading] = useState('Submit')
     const [input , setInput ] = useState({teamName:'',apiKey:'',secCode:''});
+    const [userData , setUserData] = useState([]);
+    useEffect( () => {
+        const getData = async () => {
+            console.log("checkpoint1");
+            const database = await getDocs(userCollectionRef);
+            database.docs.map(
+                doc => {
+                    const {team , security_code} = doc.data();
+                    setUserData(prevValue => [...prevValue,{teamName:team , secCode : security_code}]);
+            });
+            return database;
+        }
+        getData();
+    }, []);
     
-    function handleSubmit(){
-        setIsDisabled(true);
+    async function handleSubmit(){
+        setIsLoading('');
+        const checkTeam = userData.find(({teamName , secCode}) => {
+            if(teamName === input.teamName && secCode === input.secCode){
+                setClassName(prevValue => (['is-valid', prevValue[1],prevValue[2]]));
+                setClassName(prevValue => ([prevValue[0],prevValue[1],'is-valid']));
+                return true;
+            }
+            else{
+                setClassName(prevValue => (['is-invalid', prevValue[1],'is-invalid']));
+            }
+        });
+        const checkApiKey = await checkResponse(input.apiKey , setClassName);
+        console.log(checkApiKey + "  " + checkTeam);
+        if(checkTeam && checkApiKey){
+                setIsLoading('Submitted');
+        }
+        else{
+            setIsLoading('Retry');
+        }
     }
 
+
     function handleChange({target :{ name , value}}){
-        console.log(name +" : " + value);
         setInput(prevValue => ({...prevValue,[name]:value}))
-
-        if( name === 'apiKey' && value.length > 38){
-            checkResponse(value , setClassName);
-        }
-
-        if(classNames[0] === 'is-valid' 
-            && classNames[1] === 'is-valid' 
-            && classNames[2] === 'is-valid'){
-                
-                setIsDisabled(false);
-        }
     }
 
     return (
@@ -70,7 +94,9 @@ export default function Login(){
                         />
                         <label htmlFor="floatingCode">Security Code</label>
                     </div>
-                    <button className='button fs-50 extrabold fc-white' disabled={isDisabled} onClick={handleSubmit}>Submit</button>
+                    <button className='button fs-50 extrabold fc-white' onClick={handleSubmit}>
+                        {isLoading === "" ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : isLoading}
+                    </button>
                 </div>
             </div>
         </Wrapper>

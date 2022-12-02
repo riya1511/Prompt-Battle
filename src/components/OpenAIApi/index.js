@@ -12,11 +12,12 @@ const checkResponse = async (apiKey , setClassName) => {
         })
         if(response.data.data.length === 1){
             setClassName(prevVal => ([prevVal[0],'is-valid',prevVal[2]]));
-            return;
+            return true;
         }
     }
     catch(e){
         setClassName(prevVal => ([prevVal[0],'is-invalid',prevVal[2]]))
+        return false;
     }
 }
 
