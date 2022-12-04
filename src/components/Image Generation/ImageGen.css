@@ -1,0 +1,113 @@
+.imgWrapper{
+    background-color: #00000025;
+    border: 1px solid #ffffff85;
+    padding: clamp(1rem, 10vw , 5rem);
+    padding-top: 3rem;
+    gap: 3rem;
+    border-radius: 15px;
+    width: 85%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    width: 400px;
+    height: 400px;
+    background-color: #4018CD;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.full-width {
+    grid-column: 1 / 3;
+}
+
+.input-container{
+    border: 1px solid #ffffff85;
+    border-radius: 15px;
+    position: relative;
+}
+
+input {
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    z-index: 1;
+    color: #DADCE0;
+    text-align: center;
+    padding: 10px;
+}
+
+textarea {
+    height: 150px;
+    width: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    color: #DADCE0;
+    text-align: center;
+    padding: 10px;
+}
+
+::placeholder {
+    color: transparent;
+}
+
+label {
+    background-color: #4018CD;
+    position: absolute;
+    top: -9px;
+    left: 3px;
+    padding: 0 4px;
+    color: #DADCE0;
+    font-size: 16px;
+    transition: 0.5s;
+    z-index: 0;
+}
+
+.form-btn {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+
+.scroll {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.top-btn-position {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+  }
+  
+  .top-btn-style {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .top-btn-style:hover {
+    animation: none;
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #fff;
+  }

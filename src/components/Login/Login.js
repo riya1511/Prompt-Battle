@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(){
 
-    const [classNames , setClassName] = useState(['is-valid','','','']);
+    const [classNames , setClassName] = useState(['','','','']);
     const [isLoading , setIsLoading] = useState('Submit');
     const [input , setInput ] = useState(
     {
