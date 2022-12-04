@@ -12,10 +12,10 @@ export default function Login(){
     const [isLoading , setIsLoading] = useState('Submit');
     const [input , setInput ] = useState(
     {
-        name:'RandomGuy',
-        team_name:'BLOODY_MARY',
-        api_key:'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',
-        security_code:'685617'
+        name:'',
+        team_name:'',
+        api_key:'',
+        security_code:''
     });
     function handleSubmit(){
         setIsLoading('');
