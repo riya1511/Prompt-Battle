@@ -152,6 +152,7 @@ body,
   width: fit-content;
   border-radius: 10px;
   margin-inline: auto;
+  transition-duration: 250ms;
 }
 
 .container{
