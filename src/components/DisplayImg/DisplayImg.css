@@ -4,3 +4,16 @@
     height: 100vh;
     width: 600px;
 }
+
+.gallery{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #ffffff85;
+}

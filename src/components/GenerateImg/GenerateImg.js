@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './GenerateImg.css'
 import Wrapper from '../Wrapper/Wrapper'
 import DisplayImg from '../DisplayImg/DisplayImg'
 import { MdOutlineExpandMore } from "react-icons/md";
 import ScrollToTop from '../ScrollToTop';
 import { db } from '../../firebase';
+// import { Configuration, OpenAIApi } from "openai";
+import axios from 'axios';
 
 function GenerateImg() {
 
@@ -20,9 +22,11 @@ function GenerateImg() {
   const [info, setInfo] = useState({
     prompt: "",
     size: "",
-    number: "",
-    url: ""
+    number: 4,
+    url: "",
   });
+  const [selectedURL, setSelectedURL] = useState("");
+  const [imgURL, setImgURL] = useState([]);
 
   const handleChange = (e) => {
     setInfo({
@@ -34,22 +38,67 @@ function GenerateImg() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    db.collection('prompt')
-    .add({
-      prompt: info.prompt,
-      size: info.size,
-      number: info.number,
-      url: info.url
+    const url = "/api/submission";
+    axios.post(url, {
+      url: info.url,
     })
-    .then(() => {
-      console.log(info);
-    })
-    .catch((error) => {
-      console.log(error.message);
+    .then(res => {
+      console.log(res.data);
     });
+
+    // db.collection('prompt')
+    // .add({
+    //   prompt: info.prompt,
+    //   size: info.size,
+    //   number: info.number,
+    //   url: info.url
+    // })
+    // .then(() => {
+    //   console.log(info);
+    // })
+    // .catch((error) => {
+    //   console.log(error.message);
+    // });
     
     setInfo({ prompt: "", size: "", number: "", url: "" });
   };
+
+  const generateImg = async () => {
+    const url = "/api/generate-image";
+    axios.post(url, {
+      prompt: info.prompt,
+      size: info.size,
+      number: info.number,
+    })
+    .then(res => {
+      console.log(res.data);
+    });
+  };
+
+  const generateVari = async () => {
+    const url = "/api/generate-variants";
+    axios.post(url, {
+      size: info.size,
+      number: info.number,
+      selectedURL: selectedURL,
+    })
+    .then(res => {
+      console.log(res.data);
+    });
+  };
+
+  async function fetchData() {
+    try {
+      const response = await axios.get("/generate-img")
+      setImgURL(imgURL => imgURL.concat(response.data))
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  },[])
 
   return (
     <Wrapper>
@@ -59,7 +108,7 @@ function GenerateImg() {
         <div className='flex-col fc-white content'>
           <form onSubmit={handleSubmit}>
             <div className='input-container full-width'>
-              <label for="">Prompt</label>
+              <label htmlFor="">Prompt</label>
               <textarea name="prompt" cols='20' rows='7' value={info.prompt} onChange={handleChange} />
             </div>
             
@@ -70,15 +119,15 @@ function GenerateImg() {
             
             <div className='input-container'>
               <label>Number</label>
-              <input type='text' name='number' value={info.number} onChange={handleChange} />
+              <input type='number' name='number' maxLength='4' value={info.number} onChange={handleChange} />
             </div>
             
             <div>
-              <button className='form-btn button fs-200 fc-white extrabold'>Generate</button>
+              <button className='form-btn button fs-200 fc-white extrabold' onClick={generateImg}>Generate</button>
             </div>
 
             <div>
-              <button className='form-btn button fs-200 fc-white extrabold'>Get a Variant</button>
+              <button className='form-btn button fs-200 fc-white extrabold' onClick={generateVari}>Get a Variant</button>
             </div>
             
             <div className='input-container full-width'>
@@ -99,7 +148,8 @@ function GenerateImg() {
         </div>
 
         <div ref={displayImg}>
-          <DisplayImg />
+          <DisplayImg src={imgURL} setSelectedURL={setSelectedURL} />
+          {console.log(selectedURL)}
         </div>
       </div>
     </Wrapper>
