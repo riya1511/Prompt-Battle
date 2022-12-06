@@ -10,13 +10,18 @@ export default function Login(){
 
     const [classNames , setClassName] = useState(['','','','']);
     const [isLoading , setIsLoading] = useState('Submit');
+
+
     const [input , setInput ] = useState(
-    {
-        name:'',
-        team_name:'',
-        api_key:'',
-        security_code:''
-    });
+        {
+            name:'',
+            team_name:'',
+            api_key:'',
+            security_code:''
+        }
+    );
+
+
     function handleSubmit(){
         setIsLoading('');
         Axios.post(

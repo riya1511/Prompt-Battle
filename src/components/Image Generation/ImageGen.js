@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import './GenerateImg.css'
+import './ImageGen.css'
 import Wrapper from '../Wrapper/Wrapper'
-import DisplayImg from '../DisplayImg/DisplayImg'
-import { MdOutlineExpandMore } from "react-icons/md";
-import ScrollToTop from '../ScrollToTop';
 import axios from 'axios';
 
 function GenerateImg() {
@@ -11,58 +8,45 @@ function GenerateImg() {
   const displayImg = useRef(null);
 
   const scrollToSection = (elementRef) => {
-    window.scrollTo({
-      top: elementRef.current.offsetTop,
-      behavior: 'smooth'
-    })
+    window.scrollTo(
+      {
+        top: elementRef.current.offsetTop,
+        behavior: 'smooth'
+      }
+    )
   }
 
-  const [info, setInfo] = useState({
-    prompt: "",
-    size: "",
-    number: 4,
-    url: "",
-  });
+  const [info, setInfo] = useState(
+    {
+      prompt: "",
+      size: "",
+      number: 4,
+      url: "",
+    }
+  );
   const [selectedURL, setSelectedURL] = useState("");
   const [imgURL, setImgURL] = useState([]);
 
-  const handleChange = (e) => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value
-    });
+  function handleChange({target :{ name , value}}){
+      setInfo(prevValue => ({...prevValue,[name]:value}))
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const url = "/api/submission";
+    const url = "http://3.6.65.227:8080/api/submission";
     axios.post(url, {
       url: info.url,
     })
     .then(res => {
       console.log(res.data);
     });
-
-    // db.collection('prompt')
-    // .add({
-    //   prompt: info.prompt,
-    //   size: info.size,
-    //   number: info.number,
-    //   url: info.url
-    // })
-    // .then(() => {
-    //   console.log(info);
-    // })
-    // .catch((error) => {
-    //   console.log(error.message);
-    // });
     
     setInfo({ prompt: "", size: "", number: "", url: "" });
   };
 
   const generateImg = async () => {
-    const url = "/api/generate-image";
+    const url = "http://3.6.65.227:8080/api/generate-image";
     axios.post(url, {
       prompt: info.prompt,
       size: info.size,
@@ -74,7 +58,7 @@ function GenerateImg() {
   };
 
   const generateVari = async () => {
-    const url = "/api/generate-variants";
+    const url = "http://3.6.65.227:8080/api/generate-variants";
     axios.post(url, {
       size: info.size,
       number: info.number,
@@ -87,7 +71,7 @@ function GenerateImg() {
 
   async function fetchData() {
     try {
-      const response = await axios.get("/generate-img")
+      const response = await axios.get("http://3.6.65.227:8080/generate-img")
       setImgURL(imgURL => imgURL.concat(response.data))
     } catch (error) {
       console.error(error);
@@ -100,14 +84,21 @@ function GenerateImg() {
 
   return (
     <Wrapper>
-      <ScrollToTop/>
-      <div className='imgWrapper'>
+      <div className='flex-col borders'>
         <h1 className='fc-white'>{' >Image Generation '}</h1>
         <div className='flex-col fc-white content'>
           <form onSubmit={handleSubmit}>
+          <div class="form-floating">
+            <textarea 
+                className="form-control inputFeilds" 
+                placeholder="Leave a comment here" 
+                id="floatingTextarea">
+            </textarea>
+            <label for="floatingTextarea">Comments</label>
+          </div>
             <div className='input-container full-width'>
               <label htmlFor="">Prompt</label>
-              <textarea name="prompt" cols='20' rows='7' value={info.prompt} onChange={handleChange} />
+              <textarea name="prompt" max-cols='20' maxRows='7' value={info.prompt} onChange={handleChange} />
             </div>
             
             <div className='input-container'>
@@ -142,11 +133,9 @@ function GenerateImg() {
 
         <div className='scroll flex-col' onClick={() => scrollToSection(displayImg)}>
           <h3 className='fs-50 fc-white'>Scroll for Images</h3>
-          <MdOutlineExpandMore className='fc-white fs-600 extrabold' />
         </div>
 
         <div ref={displayImg}>
-          <DisplayImg src={imgURL} setSelectedURL={setSelectedURL} />
           {console.log(selectedURL)}
         </div>
       </div>
