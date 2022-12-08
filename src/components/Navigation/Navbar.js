@@ -18,7 +18,7 @@ export default function Navbar(){
     const hamburgerMenu = () => {
         if(!isVisible){
             setHamb({
-                height: "40vh"
+                height: "25vh"
             })
             console.log(hamRotation)
             setHamRotation(prevVal =>({...prevVal, transform:`rotate(180deg)`}));
@@ -47,8 +47,7 @@ export default function Navbar(){
                     />
                 </button>
             </div>
-            <div style={hamB} className='navBar-hamMenu flex-col'>
-                <div className='navBar-iconTray flex-col'>
+            <div style={hamB} className='navBar-hamMenu navBar-iconTray flex-col'>
                     <Link to='/Prompt-Battle/Homepage'>
                         <img className='navIcons' style={{ 
                                 width:"30px",
@@ -93,30 +92,6 @@ export default function Navbar(){
                         />
                         <p className='navBar-hamMenuLabels fc-white '>Polling</p>
                     </Link>
-                </div>
-
-
-                {isLoggedIn ? 
-                    <div className='navBar-teamDetails flex-row'>
-                        <img className='navIcons' style={{ 
-                                width:"35px",
-                                height:"35px"
-                            }}
-                            alt="Team Icon"
-                            src={process.env.PUBLIC_URL + "/assests/icons/Team Icon.png"} 
-                        />
-                        <h2 className='fc-white fs-400 medium'>
-                            CapyBara
-                        </h2>
-                    </div> :
-                    <Link to='/Prompt-Battle/Login'>
-                        <button 
-                            className='button fs-100 extrabold fc-white' 
-                            style={{padding:"0.6rem 1.4rem"}}
-                            onClick={() => setIsLoggedIn(prevVal => !prevVal)}
-                        >Login</button>
-                    </Link>
-                }
             </div>
         </div>
     );
