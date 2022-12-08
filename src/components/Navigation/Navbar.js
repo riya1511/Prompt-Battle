@@ -60,7 +60,8 @@ export default function Navbar(){
                         <p className='navBar-hamMenuLabels fc-white '>Homepage</p>
                     </Link>
 
-                    <Link to='/Prompt-Battle/GenerateImage'>
+                    {/* <Link to='/Prompt-Battle/GenerateImage'> */}
+                    <Link to='/Prompt-Battle/'>
                         <img className='navIcons' style={{ 
                                 width:"30px",
                                 height:"30px"

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './ImageGen.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Wrapper from '../Wrapper/Wrapper'
 import axios from 'axios';
 
@@ -19,9 +20,9 @@ function GenerateImg() {
   const [info, setInfo] = useState(
     {
       prompt: "",
-      size: "",
-      number: 4,
-      url: "",
+      theme: "",
+      number: "",
+      // url: "",
     }
   );
   const [selectedURL, setSelectedURL] = useState("");
@@ -29,6 +30,7 @@ function GenerateImg() {
 
   function handleChange({target :{ name , value}}){
       setInfo(prevValue => ({...prevValue,[name]:value}))
+      console.log(value);
   }
 
   const handleSubmit = (event) => {
@@ -47,7 +49,7 @@ function GenerateImg() {
     const url = "http://3.6.65.227:8080/api/generate-image";
     axios.post(url, {
       prompt: info.prompt,
-      size: info.size,
+      theme: info.theme,
       number: info.number,
     })
     .then(res => {
@@ -55,17 +57,17 @@ function GenerateImg() {
     });
   };
 
-  const generateVari = async () => {
-    const url = "http://3.6.65.227:8080/api/generate-variants";
-    axios.post(url, {
-      size: info.size,
-      number: info.number,
-      selectedURL: selectedURL,
-    })
-    .then(res => {
-      console.log(res.data);
-    });
-  };
+  // const generateVari = async () => {
+  //   const url = "http://3.6.65.227:8080/api/generate-variants";
+  //   axios.post(url, {
+  //     size: info.size,
+  //     number: info.number,
+  //     selectedURL: selectedURL,
+  //   })
+  //   .then(res => {
+  //     console.log(res.data);
+  //   });
+  // };
 
   async function fetchData() {
     try {
@@ -88,68 +90,80 @@ function GenerateImg() {
           <form onSubmit={handleSubmit}>
 
 
-          <div class="form-floating">
+          <div class="form-floating mb-3">
             <textarea
                 className="form-control inputFeilds" 
-                placeholder="Enter your prompt here" 
+                placeholder="Enter your prompt here"
+                rows='5' 
+                col='5'
                 id="floatingTextarea"
                 name='prompt'
                 onChange={handleChange}
             >
             </textarea>
-            <label for="floatingTextarea">Comments</label>
+            <label for="floatingTextarea">Prompt</label>
           </div>
 
 
-          <div className="form-floating">
+          <div className="form-floating mb-3">
               <input 
                   type="text" 
-                  id='floatingName' 
+                  id='floatingInput' 
                   onChange={handleChange} 
-                  className={`form-control inputFeilds`} 
+                  className='form-control inputFeilds'
                   placeholder="Vinay"
                   name='name'
-                  value={info.size}
+                  value={info.theme}
               />
-              <label htmlFor="floatingName">Name</label>
+              <label htmlFor="floatingName">Theme</label>
           </div>
             
-            <div className='input-container'>
+            {/* <div className='input-container'>
               <label>Size</label>
               <select class="form-select" value={info.size}>
                 <option value="1">1</option>
                 <option value="4">4</option>
               </select>
               <input type='text' name='size' value={info.size} onChange={handleChange} />
-            </div>
-            
-            <div className='input-container'>
-              <label>Number</label>
-              <input type='number' name='number' maxLength='4' value={info.number} onChange={handleChange} />
-            </div>
-            
-            <div>
-              <button className='form-btn button fs-200 fc-white extrabold' onClick={generateImg}>Generate</button>
+            </div> */}
+
+            <div className='size-radio flex-row'>
+              <p>Number of Images: </p>
+              <div className="form-check form-check-inline mb-3">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+              <input className="form-check-input" id="inlineRadio1" type='radio' name='number1' value='1' checked={info.number === "1"} onChange={handleChange} />
             </div>
 
-            <div>
-              <button className='form-btn button fs-200 fc-white extrabold' onClick={generateVari}>Get a Variant</button>
+            <div className="form-check form-check-inline mb-3">
+            <label class="form-check-label" for="inlineRadio2">4</label>
+              <input className="form-check-input" id="inlineRadio1" type='radio' name='number4' value='4' checked={info.number === "4"} onChange={handleChange} />
+            </div>
             </div>
             
-            <div className='input-container full-width'>
+            
+
+            <div className='d-grid gap-2 mb-3'>
+              <button className='button fs-200 fc-white extrabold' onClick={generateImg}>Generate</button>
+            </div>
+
+            {/* <div>
+              <button className='form-btn button fs-200 fc-white extrabold' onClick={generateVari}>Get a Variant</button>
+            </div> */}
+            
+            {/* <div className='input-container full-width'>
               <label>URL</label>
               <input type='text' name='url' value={info.url} onChange={handleChange} />
-            </div>
+            </div> */}
             
-            <div className='full-width'>
-              <button className='form-btn button fs-200 fc-white extrabold'>Submit</button>
+            <div className='d-grid gap-2 mb-3'>
+              <button className='button fs-200 fc-white extrabold'>Submit</button>
             </div>
             
           </form>
         </div>
-
         <div className='scroll flex-col' onClick={() => scrollToSection(displayImg)}>
           <h3 className='fs-50 fc-white'>Scroll for Images</h3>
+          <h3 className='fs-50 fc-white'>v</h3>
         </div>
 
         <div ref={displayImg}>

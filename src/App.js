@@ -9,7 +9,7 @@ function App() {
     <Router className="App">
       <Routes>
         
-        <Route exact path="/Prompt-Battle/" element={< GenerateImg />} />
+        <Route exact path="/Prompt-Battle/" element={<GenerateImg />} />
         {/* <Route exact path="/Prompt-Battle/" element={<Homepage />} /> */}
         <Route exact path="/Prompt-Battle/Homepage" element={<Homepage />} />
         <Route exact path="/Prompt-Battle/Polling" element={<Poll />} />

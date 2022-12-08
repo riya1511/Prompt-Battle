@@ -1,0 +1,14 @@
+p {
+    margin-right: 1rem;
+}
+
+h3 {
+    margin: 0;
+}
+
+.scroll {
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    cursor: pointer;
+}
