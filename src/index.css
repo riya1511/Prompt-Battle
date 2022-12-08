@@ -39,6 +39,12 @@ body {
   overflow-y: scroll;
 }
 
+@media (min-width: 35rem) {
+  body{
+    overflow-y: hidden;
+  }
+}
+
 /* Make images easier to work with */
 img,
 picture {
@@ -165,6 +171,7 @@ body,
   border: none;
   border-radius: 12px;
   padding-bottom: 1rem;
+  overflow-y: scroll;
 }
 
 .title {
